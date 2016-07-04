@@ -36,14 +36,20 @@ function init_nginx(){
     cat <<EOL > start.sh
 #!/bin/bash
 cd \`dirname \$0\`
-./sbin/nginx -c ./conf/nginx.conf -p ./
+./sbin/nginx -c ./conf/nginx.conf -p \`pwd\`
 cd - > /dev/null
 EOL
     cat <<EOL > stop.sh
 #!/bin/bash
 cd \`dirname \$0\`
-./sbin/nginx -c ./conf/nginx.conf -p ./ -s stop
+./sbin/nginx -c ./conf/nginx.conf -p \`pwd\` -s stop
 cd - >/dev/null
+EOL
+    cat <<EOL > reload.sh
+#!/bin/bash
+cd \`dirname \$0\`
+./sbin/nginx -c ./conf/nginx.conf -p \`pwd\` -s reload
+cd - > /dev/null
 EOL
     chmod +x start.sh stop.sh
 }
