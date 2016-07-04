@@ -51,7 +51,7 @@ cd \`dirname \$0\`
 ./sbin/nginx -c ./conf/nginx.conf -p \`pwd\` -s reload
 cd - > /dev/null
 EOL
-    chmod +x start.sh stop.sh
+    chmod +x start.sh stop.sh reload.sh
 }
 
 function install_php(){
