@@ -84,7 +84,6 @@ function install_php(){
     --enable-sysvsem \
     --enable-inline-optimization \
     --with-curl \
-    --with-curlwrappers \
     --enable-mbregex \
     --enable-cgi \
     --enable-fpm \
