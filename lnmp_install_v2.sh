@@ -1,5 +1,5 @@
 #!/bin/bash
-# author : mister ching
+# author : MisterChing
 if [ $# == 0 ]; then
     echo "Usage: {php|nginx|mysql}"
 fi
