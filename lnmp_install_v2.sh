@@ -216,6 +216,12 @@ max_connections=2048
 transaction_isolation=READ-COMMITTED
 explicit_defaults_for_timestamp=true
 
+#关闭performance_schema
+table_definition_cache=200
+table_open_cache=128
+performance_schema_max_table_instances=40
+performance_schema=0
+
 # Remove leading # to set options mainly useful for reporting servers.
 # The server defaults are faster for transactions and fast SELECTs.
 # Adjust sizes as needed, experiment to find the optimal values.
