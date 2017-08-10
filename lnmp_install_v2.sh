@@ -201,6 +201,7 @@ function init_mysql(){
 
 basedir=mysql_install_path
 datadir=/data/mysql
+bind-address=127.0.0.1
 port=3306
 socket=mysql_install_path/var/mysql.sock
 slow-query-log-file=mysql_install_path/log/slow.log
