@@ -5,9 +5,9 @@ if [ $# == 0 ]; then
 fi
 
 workpath=`pwd`
-nginx_path="/ching2/server/"
-php_path="/ching2/server/"
-mysql_path="/ching/server/"
+nginx_path="/ching/athena/"
+php_path="/ching/athena/"
+mysql_path="/ching/athena/"
 
 function install_nginx(){
     #yum -y install pcre pcre-devel
@@ -55,7 +55,7 @@ EOL
 }
 
 function install_php(){
-    #yum -y install bison flex libxml2-devel libxslt-devel openssl-devel bzip2-devel libcurl-devel libjpeg-devel libpng-devel freetype-devel t1lib-devel libicu-devel libmcrypt libmcrypt-devel mcrypt mhash
+    #yum -y install bison flex libxml2-devel libxslt-devel openssl-devel gmp-devel bzip2-devel libcurl-devel libjpeg-devel libpng-devel freetype-devel t1lib-devel libicu-devel libmcrypt libmcrypt-devel mcrypt mhash
     if [ ! -d ${php_path} ]; then
         mkdir -p ${php_path}
     fi
@@ -69,29 +69,23 @@ function install_php(){
     cd ${workpath}/${phpname}
     ./configure \
     --prefix=${php_path}${phpname} \
-    --with-config-file-path=${php_path}${phpname}/etc \
-    --with-mysql \
-    --with-mysql-sock \
-    --with-mysqli \
-    --with-pdo-mysql \
+    --enable-fpm \
+    --enable-mysqlnd \
+    --with-mysqli=mysqlnd \
+    --with-pdo-mysql=mysqlnd \
+    --with-gd \
+    --enable-gd-native-ttf \
     --with-freetype-dir \
     --with-jpeg-dir \
     --with-png-dir \
+    --with-curl \
     --with-zlib \
     --disable-rpath \
     --enable-bcmath \
-    --enable-shmop \
-    --enable-sysvsem \
-    --enable-inline-optimization \
-    --with-curl \
-    --enable-mbregex \
-    --enable-cgi \
-    --enable-fpm \
+    --with-gmp \
     --enable-mbstring \
     --with-mcrypt \
-    --with-gd \
     --enable-gd-native-ttf \
-    --with-pear \
     --with-openssl \
     --with-mhash \
     --enable-pcntl \
