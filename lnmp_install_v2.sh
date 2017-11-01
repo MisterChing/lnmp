@@ -5,9 +5,9 @@ if [ $# == 0 ]; then
 fi
 
 workpath=`pwd`
-nginx_path="/ching/athena/"
-php_path="/ching/athena/"
-mysql_path="/ching/athena/"
+nginx_path="/home/ching/athena/"
+php_path="/home/ching/athena/"
+mysql_path="/home/ching/athena/"
 
 function install_nginx(){
     #yum -y install pcre pcre-devel
