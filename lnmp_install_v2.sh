@@ -193,15 +193,15 @@ function init_mysql(){
 # server_id = .....
 # socket = .....
 
-basedir=mysql_install_path
+basedir=\$mysql_path/mysql
 datadir=/data/mysql
 bind-address=127.0.0.1
 port=3306
-socket=mysql_install_path/var/mysql.sock
-slow-query-log-file=mysql_install_path/log/slow.log
-pid-file=mysql_install_path/var/pid
+socket=\$mysql_path/mysql/var/mysql.sock
+slow-query-log-file=\$mysql_path/mysql/log/slow.log
+pid-file=\$mysql_path/mysql/var/pid
 general-log=1
-general-log_file=mysql_install_path/log/mysql.log
+general-log_file=\$mysql_path/mysql/log/mysql.log
 max_allowed_packet=33554432
 ft_min_word_len=3
 #ft_bollean_syntax=' |-><()~*:""&^'
@@ -226,13 +226,13 @@ performance_schema=0
 
 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 
 [mysql]
-socket=mysql_install_path/var/mysql.sock
+socket=\$mysql_path/mysql/var/mysql.sock
 
 [mysqldump]
-socket=mysql_install_path/var/mysql.sock
+socket=\$mysql_path/mysql/var/mysql.sock
 
 [mysqladmin]
-socket=mysql_install_path/var/mysql.sock
+socket=\$mysql_path/mysql/var/mysql.sock
 
 EOL
     cat <<EOL > start.sh
