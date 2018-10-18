@@ -6,7 +6,7 @@ fi
 
 workpath=`pwd`
 nginx_path="/home/ching/athena/"
-php_path="/home/ching/athena/"
+php_path="/Users/misterching/athena/"
 mysql_path="/home/ching/athena/"
 
 function install_nginx(){
@@ -80,12 +80,15 @@ function install_php(){
     --with-png-dir \
     --with-curl \
     --with-zlib \
+    --with-gettext \
+    --with-shmop \
     --disable-rpath \
     --enable-bcmath \
     --with-gmp \
+    --with-ldap \
+    --with-wddx \
     --enable-mbstring \
     --with-mcrypt \
-    --enable-gd-native-ttf \
     --with-openssl \
     --with-mhash \
     --enable-pcntl \
