@@ -129,7 +129,7 @@ EOL
 }
 
 function install_mysql(){
-    #yum -y install cmake ncurses-devel
+    yum -y install cmake ncurses-devel
     mkdir -p /data/mysql
     if [ ! -d ${mysql_path} ]; then
         mkdir -p ${mysql_path}
@@ -156,8 +156,9 @@ function install_mysql(){
     -DWITH_PARTITION_STORAGE_ENGINE=1 \
     -DEXTRA_CHARSETS=all \
     -DDEFAULT_CHARSET=utf8mb4 \
-    -DDEFAULT_COLLATION=utf8mb4_general_ci
-    #-DWITH_BOOST=boost
+    -DDEFAULT_COLLATION=utf8mb4_general_ci \
+    -DWITH_BOOST=boost
+    #-DDOWNLOAD_BOOST=1
 
     make && make install
     if [ $? == 0 ]; then
