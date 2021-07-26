@@ -13,46 +13,46 @@ function isBusyBox() {
     echo | busybox md5sum &>/dev/null && echo yes || echo no
 }
 
-# microseconds
-function timeUS() {
-    declare -i time_us
+# nanoseconds
+function timeNS() {
+    declare -i time_ns
     if [[ $(isBusyBox) == "yes" ]]; then
-        time_us=$(adjtimex | awk '/(time.tv_sec|time.tv_usec):/ { printf("%-9d", $2) }' | sed 's/ /0/g')  # add trailing zeros
+        time_ns=$(adjtimex | awk '/(time.tv_sec|time.tv_usec):/ { printf("%-9d", $2) }' | sed 's/ /0/g')  # add trailing zeros
     elif [[ x"$(uname)" == x"Darwin" ]]; then
-        time_us=$(gdate +%s%6N)
+        time_ns=$(gdate +%s%N)
     else
-        time_us=$(date +%s%6N)
+        time_ns=$(date +%s%N)
     fi
-    echo $time_us
+    echo $time_ns
 }
 
 dest=$(( `date +%s`+ $total_s-1 ))  # total_s-1: trick reduce code & sys time cost
 while [ `date +%s` -lt $dest ]; do
-    start_us=$(timeUS)
+    start_ns=$(timeNS)
     eval $cmd
-    end_us=$(timeUS)
-    cost_ms=$(awk "BEGIN{print ($end_us - $start_us)/1000000000.0}")
-    sleep_us=$(( $step * 1000000000 - ($end_us - $start_us) ))
-    if [ $sleep_us -gt 0 ]; then
-      sleep $(awk "BEGIN{print ($sleep_us+0.0)/1000000000}")
-      echo "cost_time: $cost_ms sleep_time: $(awk "BEGIN{print ($sleep_us+0.0)/1000000000}")"
+    end_ns=$(timeNS)
+    cost_s=$(awk "BEGIN{print ($end_ns - $start_ns)/1000000000.0}")
+    sleep_ns=$(( $step * 1000000000 - ($end_ns - $start_ns) ))
+    if [ $sleep_ns -gt 0 ]; then
+      sleep $(awk "BEGIN{print ($sleep_ns+0.0)/1000000000}")
+      echo "cost_time: $cost_s sleep_time: $(awk "BEGIN{print ($sleep_ns+0.0)/1000000000}")"
     else
-      echo "cost_time: $cost_ms no sleep"
+      echo "cost_time: $cost_s no sleep"
     fi
 done
 
 
 #for (( i = 0; i < $total_s-1; i=$(($i+step)) )); do   # total_s-1: trick reduce code & sys time cost
 #    echo ${i}
-#    start_us=$(timeUS)
+#    start_ns=$(timeNS)
 #    eval $cmd
-#    end_us=$(timeUS)
-#    cost_ms=$(awk "BEGIN{print ($end_us - $start_us)/1000000000.0}")
-#    sleep_us=$(( $step * 1000000000 - ($end_us - $start_us) ))
-#    if [ $sleep_us -gt 0 ]; then
-#      sleep $(awk "BEGIN{print ($sleep_us+0.0)/1000000000}")
-#      echo "cost_time: $cost_ms sleep_time: $(awk "BEGIN{print ($sleep_us+0.0)/1000000000}")"
+#    end_ns=$(timeNS)
+#    cost_s=$(awk "BEGIN{print ($end_ns - $start_ns)/1000000000.0}")
+#    sleep_ns=$(( $step * 1000000000 - ($end_ns - $start_ns) ))
+#    if [ $sleep_ns -gt 0 ]; then
+#      sleep $(awk "BEGIN{print ($sleep_ns+0.0)/1000000000}")
+#      echo "cost_time: $cost_s sleep_time: $(awk "BEGIN{print ($sleep_ns+0.0)/1000000000}")"
 #    else
-#      echo "cost_time: $cost_ms no sleep"
+#      echo "cost_time: $cost_s no sleep"
 #    fi
 #done
