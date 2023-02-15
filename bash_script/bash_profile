@@ -1,0 +1,27 @@
+
+#export CLICOLOR=1
+#export LSCOLORS=Exfxcxdxbxegedabagacad
+# Tell grep to highlight matches
+export GREP_OPTIONS='--color=auto' 
+export LANGUAGE=en_US.UTF-8
+
+alias ll='ls -l'
+export PATH=$HOME/bin:$PATH
+export PATH=$PATH:/Users/ching/Library/Python/2.7/bin
+
+# zsh custom prompt
+local ret_status="%(?::%{$fg_bold[red]%}:( %s)%{$fg_bold[blue]%}$"
+PROMPT='%{$fg_bold[green]%}%n@%m %{$fg_bold[blue]%}%c $(git_prompt_info)${ret_status}%{$fg_bold[green]%}%p %{$reset_color%}'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[cyan]%}git:(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[cyan]%}) %{$fg[yellow]%}✗%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%})"
+
+
+# Homebrew
+export HOMEBREW_NO_AUTO_UPDATE=true
+
+#go
+export PATH=$PATH:$HOME/go/bin
+export GOPATH=$HOME/go
