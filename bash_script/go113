@@ -1,0 +1,14 @@
+#!/bin/bash
+#docker pull golang:1.13.15-alpine3.12 -q
+docker run --rm \
+    -e GO111MODULE="on" \
+    -e GOOS=darwin \
+    -e GOARCH=amd64 \
+    -e GOPROXY="https://goproxy.cn,http://go.xesv5.com/proxy,direct" \
+    -e GOPRIVATE="*.100tal.com" \
+    -e GONOPROXY="*.100tal.com" \
+    -e GONOSUMDB="*.100tal.com" \
+    -v "$PWD":/usr/src/myapp \
+    -w /usr/src/myapp \
+    golang:1.13.15-alpine3.12 go $@
+
