@@ -8,7 +8,6 @@ docker run --rm \
     -e GOPRIVATE="*.100tal.com" \
     -e GONOPROXY="*.100tal.com" \
     -e GONOSUMDB="*.100tal.com" \
-    -e GONOSUMDB="*.100tal.com" \
     -v "$GOPATH":/go \
     -v "$HOME"/.ssh:/root/.ssh \
     -v "$HOME"/.gitconfig:/root/.gitconfig \
