@@ -51,7 +51,7 @@ $command "${domain}" @8.8.8.8
 echo ""
 
 print_color $YELLOW "域名${domain} 当前解析为:"
-ping -c1 "${domain}" | grep PING
-curl -v --head "${domain}" 2>&1 | tee | grep Connected
+ping -c1 -t1 "${domain}" | grep PING
+curl -v --head --connect-timeout 1 "${domain}" 2>&1 | tee | grep Trying
 echo ""
 
