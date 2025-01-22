@@ -4,6 +4,7 @@
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto' 
 export LANGUAGE=en_US.UTF-8
+ulimit -n 65535
 
 alias ll='ls -l'
 export PATH=$HOME/bin:$PATH
@@ -18,10 +19,44 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[cyan]%}) %{$fg[yellow]%}✗%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%})"
 
+#php
+export PATH=$PATH:/usr/local/sbin
 
 # Homebrew
 export HOMEBREW_NO_AUTO_UPDATE=true
+alias mbrew='/opt/homebrew/bin/brew'
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
+export MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion)
+export PKG_CONFIG_PATH=/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH
+
+# Postmain
+export POSTMAN_DISABLE_GPU=true
 
 #go
-export PATH=$PATH:$HOME/go/bin
+#MYGOVERSION="1.13.15"
+#MYGOVERSION="1.14.15"
+#MYGOVERSION="1.16.15"
+#MYGOVERSION="1.17.7"
+#MYGOVERSION="1.18.10"
+#MYGOVERSION="1.19.13"
+MYGOVERSION="1.20.14"
+#MYGOVERSION="1.21.13"
+#MYGOVERSION="1.22.10"
+#MYGOVERSION="1.23.5"
+export GOROOT="$HOME/local/go$MYGOVERSION"
 export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
+
+#java
+JAVA_HOME=/Users/ching/local/jdk-19.0.2.jdk/Contents/Home
+#CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+PATH=$PATH:$JAVA_HOME/bin:
+export JAVA_HOME
+export CLASSPATH
+export PATH
+
+
+
+source ~/.doggo_completion.bash
