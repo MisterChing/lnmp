@@ -1,6 +1,8 @@
 #!/bin/bash
 #https://github.com/nicksherron/cookies
 auth=$(go_cookies baidu.com | grep 'Authorization=\S*;' -o | awk -F'=' '{print $2}' | awk -F';' '{print $1}' | sed 's/%20/ /g')
+#https://github.com/noperator/chromedb
+auth=$(chromedb -ls -p '/Users/xxx/Library/Application Support/Google/Chrome/Default' | grep xxx.com | grep Auth | jq -r .value)
 echo $auth
 export PARAM_AUTH=$auth
 
