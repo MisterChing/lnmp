@@ -14,7 +14,7 @@ if ($fileContent === false) {
     echo "无法下载文件 {$error['message']}: $filePath" . PHP_EOL;
     exit(1);
 }
-$encoding = mb_detect_encoding($fileContent, ['UTF-8', 'GB18030', 'GBK', 'ASCII', 'GB2312', 'CP936', 'ISO-8859-1', 'CP936', 'ASCII']);
+$encoding = mb_detect_encoding($fileContent, ['UTF-8', 'GB18030', 'GBK', 'GB2312', 'CP936', 'ISO-8859-1', 'WINDOWS-1252', 'ASCII']);
 
 if (empty($_SERVER['argv'][2])) {
     echo "文件编码: $encoding" . PHP_EOL;
