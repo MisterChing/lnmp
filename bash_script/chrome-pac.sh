@@ -13,7 +13,7 @@ RULES_STRING=$(IFS=, ; echo "${RULES_ARRAY[*]}")
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
   --proxy-pac-url="file://$HOME/.chrome-pac/proxy.pac" \
   --user-data-dir="$HOME/.chrome-pac" \
-  --host-resolver-rules="$RULES_STRING"
+  --host-resolver-rules="$RULES_STRING" \
   --no-first-run \
   > /dev/null 2>&1 &
 
