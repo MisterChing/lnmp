@@ -8,5 +8,5 @@ function FindProxyForURL(url, host) {
       }
 
       // 其他全部走 Clash 代理，Clash 未启动时自动降级直连
-      return "PROXY 127.0.0.1:7890; DIRECT";
+      return "PROXY 127.0.0.1:7890; PROXY 127.0.0.1:7897; DIRECT";
   }
